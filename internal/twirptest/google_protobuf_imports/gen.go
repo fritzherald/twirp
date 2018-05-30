@@ -11,6 +11,6 @@
 // express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 
-package gen
+package google_protobuf_imports
 
-const Version = "v5.4.1"
+//go:generate ../../protoc_gen.sh service.proto

@@ -2,17 +2,13 @@
 // source: service.proto
 
 /*
-Package gogo_compat is a generated twirp stub package.
+Package google_protobuf_imports is a generated twirp stub package.
 This code was generated with github.com/twitchtv/twirp/protoc-gen-twirp v5.4.1.
-
-Test to make sure that Twirp plays well with code generated with
-github.com/gogo/protobuf/protoc-gen-gofast.
-
 
 It is generated from these files:
 	service.proto
 */
-package gogo_compat
+package google_protobuf_imports
 
 import bytes "bytes"
 import strings "strings"
@@ -26,6 +22,9 @@ import proto "github.com/golang/protobuf/proto"
 import twirp "github.com/twitchtv/twirp"
 import ctxsetters "github.com/twitchtv/twirp/ctxsetters"
 
+import google_protobuf1 "github.com/golang/protobuf/ptypes/wrappers"
+import google_protobuf "github.com/golang/protobuf/ptypes/empty"
+
 // Imports only used by utility functions:
 import io "io"
 import strconv "strconv"
@@ -37,7 +36,7 @@ import url "net/url"
 // =============
 
 type Svc interface {
-	Send(context.Context, *Msg) (*Msg, error)
+	Send(context.Context, *google_protobuf1.StringValue) (*google_protobuf.Empty, error)
 }
 
 // ===================
@@ -68,11 +67,11 @@ func NewSvcProtobufClient(addr string, client HTTPClient) Svc {
 	}
 }
 
-func (c *svcProtobufClient) Send(ctx context.Context, in *Msg) (*Msg, error) {
-	ctx = ctxsetters.WithPackageName(ctx, "twirp.internal.twirptest.gogo_compat")
+func (c *svcProtobufClient) Send(ctx context.Context, in *google_protobuf1.StringValue) (*google_protobuf.Empty, error) {
+	ctx = ctxsetters.WithPackageName(ctx, "twirp.internal.twirptest.use_empty")
 	ctx = ctxsetters.WithServiceName(ctx, "Svc")
 	ctx = ctxsetters.WithMethodName(ctx, "Send")
-	out := new(Msg)
+	out := new(google_protobuf.Empty)
 	err := doProtobufRequest(ctx, c.client, c.urls[0], in, out)
 	if err != nil {
 		return nil, err
@@ -108,11 +107,11 @@ func NewSvcJSONClient(addr string, client HTTPClient) Svc {
 	}
 }
 
-func (c *svcJSONClient) Send(ctx context.Context, in *Msg) (*Msg, error) {
-	ctx = ctxsetters.WithPackageName(ctx, "twirp.internal.twirptest.gogo_compat")
+func (c *svcJSONClient) Send(ctx context.Context, in *google_protobuf1.StringValue) (*google_protobuf.Empty, error) {
+	ctx = ctxsetters.WithPackageName(ctx, "twirp.internal.twirptest.use_empty")
 	ctx = ctxsetters.WithServiceName(ctx, "Svc")
 	ctx = ctxsetters.WithMethodName(ctx, "Send")
-	out := new(Msg)
+	out := new(google_protobuf.Empty)
 	err := doJSONRequest(ctx, c.client, c.urls[0], in, out)
 	if err != nil {
 		return nil, err
@@ -145,11 +144,11 @@ func (s *svcServer) writeError(ctx context.Context, resp http.ResponseWriter, er
 // SvcPathPrefix is used for all URL paths on a twirp Svc server.
 // Requests are always: POST SvcPathPrefix/method
 // It can be used in an HTTP mux to route twirp requests along with non-twirp requests on other routes.
-const SvcPathPrefix = "/twirp/twirp.internal.twirptest.gogo_compat.Svc/"
+const SvcPathPrefix = "/twirp/twirp.internal.twirptest.use_empty.Svc/"
 
 func (s *svcServer) ServeHTTP(resp http.ResponseWriter, req *http.Request) {
 	ctx := req.Context()
-	ctx = ctxsetters.WithPackageName(ctx, "twirp.internal.twirptest.gogo_compat")
+	ctx = ctxsetters.WithPackageName(ctx, "twirp.internal.twirptest.use_empty")
 	ctx = ctxsetters.WithServiceName(ctx, "Svc")
 	ctx = ctxsetters.WithResponseWriter(ctx, resp)
 
@@ -168,7 +167,7 @@ func (s *svcServer) ServeHTTP(resp http.ResponseWriter, req *http.Request) {
 	}
 
 	switch req.URL.Path {
-	case "/twirp/twirp.internal.twirptest.gogo_compat.Svc/Send":
+	case "/twirp/twirp.internal.twirptest.use_empty.Svc/Send":
 		s.serveSend(ctx, resp, req)
 		return
 	default:
@@ -206,7 +205,7 @@ func (s *svcServer) serveSendJSON(ctx context.Context, resp http.ResponseWriter,
 		return
 	}
 
-	reqContent := new(Msg)
+	reqContent := new(google_protobuf1.StringValue)
 	unmarshaler := jsonpb.Unmarshaler{AllowUnknownFields: true}
 	if err = unmarshaler.Unmarshal(req.Body, reqContent); err != nil {
 		err = wrapErr(err, "failed to parse request json")
@@ -215,7 +214,7 @@ func (s *svcServer) serveSendJSON(ctx context.Context, resp http.ResponseWriter,
 	}
 
 	// Call service method
-	var respContent *Msg
+	var respContent *google_protobuf.Empty
 	func() {
 		defer func() {
 			// In case of a panic, serve a 500 error and then panic.
@@ -232,7 +231,7 @@ func (s *svcServer) serveSendJSON(ctx context.Context, resp http.ResponseWriter,
 		return
 	}
 	if respContent == nil {
-		s.writeError(ctx, resp, twirp.InternalError("received a nil *Msg and nil error while calling Send. nil responses are not supported"))
+		s.writeError(ctx, resp, twirp.InternalError("received a nil *google_protobuf.Empty and nil error while calling Send. nil responses are not supported"))
 		return
 	}
 
@@ -274,7 +273,7 @@ func (s *svcServer) serveSendProtobuf(ctx context.Context, resp http.ResponseWri
 		s.writeError(ctx, resp, twirp.InternalErrorWith(err))
 		return
 	}
-	reqContent := new(Msg)
+	reqContent := new(google_protobuf1.StringValue)
 	if err = proto.Unmarshal(buf, reqContent); err != nil {
 		err = wrapErr(err, "failed to parse request proto")
 		s.writeError(ctx, resp, twirp.InternalErrorWith(err))
@@ -282,7 +281,7 @@ func (s *svcServer) serveSendProtobuf(ctx context.Context, resp http.ResponseWri
 	}
 
 	// Call service method
-	var respContent *Msg
+	var respContent *google_protobuf.Empty
 	func() {
 		defer func() {
 			// In case of a panic, serve a 500 error and then panic.
@@ -299,7 +298,7 @@ func (s *svcServer) serveSendProtobuf(ctx context.Context, resp http.ResponseWri
 		return
 	}
 	if respContent == nil {
-		s.writeError(ctx, resp, twirp.InternalError("received a nil *Msg and nil error while calling Send. nil responses are not supported"))
+		s.writeError(ctx, resp, twirp.InternalError("received a nil *google_protobuf.Empty and nil error while calling Send. nil responses are not supported"))
 		return
 	}
 
@@ -752,13 +751,16 @@ func callError(ctx context.Context, h *twirp.ServerHooks, err twirp.Error) conte
 }
 
 var twirpFileDescriptor0 = []byte{
-	// 120 bytes of a gzipped FileDescriptorProto
+	// 168 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2d, 0x4e, 0x2d, 0x2a,
-	0xcb, 0x4c, 0x4e, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x52, 0x29, 0x29, 0xcf, 0x2c, 0x2a,
+	0xcb, 0x4c, 0x4e, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x52, 0x2a, 0x29, 0xcf, 0x2c, 0x2a,
 	0xd0, 0xcb, 0xcc, 0x2b, 0x49, 0x2d, 0xca, 0x4b, 0xcc, 0xd1, 0x03, 0x73, 0x4b, 0x52, 0x8b, 0x4b,
-	0xf4, 0xd2, 0xf3, 0xd3, 0xf3, 0xe3, 0x93, 0xf3, 0x73, 0x0b, 0x12, 0x4b, 0x94, 0x58, 0xb9, 0x98,
-	0x7d, 0x8b, 0xd3, 0x8d, 0x92, 0xb9, 0x98, 0x83, 0xcb, 0x92, 0x85, 0x62, 0xb8, 0x58, 0x82, 0x53,
-	0xf3, 0x52, 0x84, 0x34, 0xf5, 0x88, 0xd1, 0xac, 0xe7, 0x5b, 0x9c, 0x2e, 0x45, 0xbc, 0x52, 0x27,
-	0xde, 0x28, 0x6e, 0x24, 0xa1, 0x24, 0x36, 0xb0, 0x3b, 0x8d, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff,
-	0x89, 0x62, 0xe9, 0xdb, 0xb8, 0x00, 0x00, 0x00,
+	0xf4, 0x4a, 0x8b, 0x53, 0xe3, 0x53, 0x73, 0x0b, 0x4a, 0x2a, 0xa5, 0xa4, 0xd3, 0xf3, 0xf3, 0xd3,
+	0x73, 0x52, 0xf5, 0xc1, 0x3a, 0x92, 0x4a, 0xd3, 0xf4, 0xc1, 0xc2, 0x10, 0x03, 0xa4, 0xe4, 0xd0,
+	0x25, 0xcb, 0x8b, 0x12, 0x0b, 0x0a, 0x52, 0x8b, 0x8a, 0x21, 0xf2, 0x46, 0xce, 0x5c, 0xcc, 0xc1,
+	0x65, 0xc9, 0x42, 0x36, 0x5c, 0x2c, 0xc1, 0xa9, 0x79, 0x29, 0x42, 0x32, 0x7a, 0x10, 0xf5, 0x7a,
+	0x30, 0xf5, 0x7a, 0xc1, 0x25, 0x45, 0x99, 0x79, 0xe9, 0x61, 0x89, 0x39, 0xa5, 0xa9, 0x52, 0x62,
+	0x18, 0xb2, 0xae, 0x20, 0xab, 0x9c, 0x24, 0xa3, 0xc4, 0x21, 0x12, 0xf1, 0x30, 0x89, 0xf8, 0xcc,
+	0xdc, 0x82, 0xfc, 0xa2, 0x92, 0xe2, 0x24, 0x36, 0xb0, 0x88, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff,
+	0xbb, 0x87, 0x86, 0x24, 0xd8, 0x00, 0x00, 0x00,
 }

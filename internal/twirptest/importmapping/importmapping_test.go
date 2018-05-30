@@ -11,6 +11,10 @@
 // express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 
-package gen
+package importmapping
 
-const Version = "v5.4.1"
+import "testing"
+
+func TestCompilation(t *testing.T) {
+	// Test passes if this package compiles
+}
