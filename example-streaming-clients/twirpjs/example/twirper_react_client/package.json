@@ -1,0 +1,18 @@
+{
+  "name": "twirper_react_client",
+  "version": "0.0.3",
+  "private": true,
+  "dependencies": {
+    "protobufjs": "gnarbox/protobuf.js#keep-case-all",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4",
+    "twirpjs": "../.."
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

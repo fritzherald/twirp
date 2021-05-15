@@ -1,0 +1,9 @@
+# Gopkg.toml example
+#
+# Refer to https://github.com/golang/dep/blob/master/docs/Gopkg.toml.md
+# for detailed Gopkg.toml documentation.
+
+[[constraint]]
+  name = "github.com/twitchtv/twirp"
+  source = "github.com/gnarbox/twirp"
+  revision = "fe19e0193b0ef902003c5f441b3b715bc240ad64"

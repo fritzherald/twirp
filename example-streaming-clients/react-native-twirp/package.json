@@ -1,0 +1,24 @@
+{
+	"name": "react-native-twirp",
+	"version": "0.0.3",
+	"description": "Twirp clients for iOS and Android with experimental support for streaming endpoints",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"react-native",
+		"rpc",
+		"streaming",
+		"twirp"
+	],
+	"license": "MIT",
+	"dependencies": {
+		"base64-js": "^1.1.2",
+		"event-target-shim": "^1.0.5",
+		"fbjs": "^0.2.1"
+	},
+	"peerDependencies": {
+		"react-native": "^0.55.4"
+	}
+}

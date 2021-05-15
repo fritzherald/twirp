@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package twirper;               // serves twirps at http://<host:port>/twirp/twirper.<Service>/<MethodName>
+option go_package = "twirper"; // matches name of destination directory for generated files
+
+// A Twirper repeats stuff
+service Twirper {
+	// Echo sends back what it received
+	rpc Echo(EchoReq) returns (EchoReq);
+
+	// Repeat returns a stream of repeated messages
+	rpc Repeat(RepeatReq) returns (stream RepeatResp);
+}
+
+// Request type for the Echo RPC (also the response, because echo)
+message EchoReq {
+	// Message will be echoed back in the EchoResp
+	string Message = 1;
+}
+
+message RepeatReq {
+	// Message to be repeated
+	string Message = 1;
+
+	// The number of times to repeat the message
+	int32 NumRepeats = 2;
+
+	// Milliseconds to wait between repeats
+	int64 DelayMs = 3;
+
+	// Send an error after this many messages (no errors if ErrAfter<=0)
+	int32 ErrAfter = 4;
+}
+
+message RepeatResp {
+	// Repeated is how many times the message has already been repeated
+	// (i.e. on first resp Repeated is 0, last of n is n - 1)
+	int32 ID = 3;
+
+	// The same message as from the request
+	string Message = 1;
+
+	// DelayedMs is how many milliseconds the delay actually took
+	int64 DelayedMs = 2;
+}

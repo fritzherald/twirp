@@ -1,0 +1,1 @@
+This directory contains projects that were used to implement experimental clients of the never-adopted streaming twirp protocol: [twirp Issue #70](https://github.com/twitchtv/twirp/issues/70). As the end of that issue describes, these are probably not useful for anything except to serve as a cautionary tale!

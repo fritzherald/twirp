@@ -1,0 +1,33 @@
+{
+	"name": "twirpjs",
+	"version": "0.0.6",
+	"description": "Experimental streaming twirp client built on protobuf.js",
+	"main": "index.js",
+	"bin": {
+		"gen_twirpjs": "./gen_twirpjs/index.js"
+	},
+	"scripts": {
+		"test": "jest"
+	},
+	"keywords": [
+		"twirp",
+		"rpc",
+		"protobuf"
+	],
+	"license": "Apache-2.0",
+	"dependencies": {
+		"protobufjs": "file:../protobuf.js"
+	},
+	"optionalDependencies": {
+		"rxjs": "^6.1.0"
+	},
+	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-jest": "^22.4.3",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-react-native": "4.0.0",
+		"commander": "^2.15.1",
+		"jest": "^22.4.3",
+		"regenerator-runtime": "^0.11.1"
+	}
+}
